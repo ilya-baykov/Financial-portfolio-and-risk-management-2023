@@ -28,3 +28,4 @@ draw_down_value = draw_down(cumm_profit_value)
 
 # alpha_stats_graphs(alpha, profit)
 # instrument_volatility(profit)
+print(profit_correlation(alpha, profit))

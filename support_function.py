@@ -1,3 +1,5 @@
+import random
+
 import numpy as np
 import pandas as pd
 from exception import BadValue
@@ -143,3 +145,11 @@ def cut_middle(lst: list, n: int) -> list:
         return result
 
     return element_exclusion()
+
+
+def profit_correlation(alpha_1: pd.DataFrame(), alpha_2: pd.DataFrame()):
+    profit_1 = holding_pnl(alpha_1, alpha_2)
+    profit_2 = profit_1.copy()
+    for i in range(len(profit_2)):
+        profit_2[i] -= random.random()
+    return np.corrcoef(profit_1, profit_2)[0][1]
