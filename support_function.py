@@ -106,11 +106,31 @@ def rank(lst: list):
 def cut_outliers(lst: list, n: int) -> list:
     def exceptional_values():
         sort_lst = sorted(lst)
-        print(sort_lst)
         min_elements = sort_lst[:n:]
         sort_lst.reverse()
         max_elements = sort_lst[:n:]
         return min_elements + max_elements
+
+    def element_exclusion():
+        exceptional = exceptional_values()
+        result = lst.copy()
+        while exceptional:
+            current_exception_element = exceptional[0]
+            pos = result.index(current_exception_element)
+            result[pos] = 0
+            exceptional.remove(current_exception_element)
+        return result
+
+    return element_exclusion()
+
+
+def cut_middle(lst: list, n: int) -> list:
+    def exceptional_values():
+        sort_lst = sorted(lst)
+        left_side = sort_lst[:len(lst) // 2:]
+        right_side = sort_lst[len(lst) // 2::]
+        middle = left_side[-n // 2::] + right_side[:n // 2:]
+        return middle
 
     def element_exclusion():
         exceptional = exceptional_values()
