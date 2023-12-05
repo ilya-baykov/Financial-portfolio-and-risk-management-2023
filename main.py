@@ -1,5 +1,5 @@
 from support_function import *
-from drawing_graphs import cumm_profit_graphs
+from drawing_graphs import cumm_profit_graphs, alpha_stats_graphs
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -25,3 +25,5 @@ cumm_profit_value = cumm_profit(alpha_yield_vector)
 # cumm_profit_graphs(cumm_profit_value)
 
 draw_down_value = draw_down(cumm_profit_value)
+
+alpha_stats_graphs(alpha, profit)
