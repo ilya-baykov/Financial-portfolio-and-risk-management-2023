@@ -153,3 +153,22 @@ def profit_correlation(alpha_1: pd.DataFrame(), alpha_2: pd.DataFrame()):
     for i in range(len(profit_2)):
         profit_2[i] -= random.random()
     return np.corrcoef(profit_1, profit_2)[0][1]
+
+
+def decay(alpha, n):
+    s = []
+
+    for i in range(n):
+        s.append(i)
+
+    s = list(reversed(rank(s)))
+    d_alpha = pd.DataFrame(alpha[alpha.columns[n - 1:]])
+
+    for i in range(len(alpha.columns) - n):
+        for j in range(n - 1):
+            d_alpha[alpha.columns[i + n]] += alpha[alpha.columns[i - j]] * s[j + 1]
+
+    for i in range(len(d_alpha.columns)):
+        d_alpha[d_alpha.columns[i]] = normalization(d_alpha[d_alpha.columns[i]])
+
+    return d_alpha

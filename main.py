@@ -28,4 +28,8 @@ draw_down_value = draw_down(cumm_profit_value)
 
 # alpha_stats_graphs(alpha, profit)
 # instrument_volatility(profit)
-print(profit_correlation(alpha, profit))
+profit_correlation(alpha, profit)
+
+comparison = pd.DataFrame()
+# comparison['alpha'] = turnover(alpha)
+# comparison['d_alpha'] = turnover(decay(alpha, 7))
