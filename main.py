@@ -1,16 +1,33 @@
-# This is a sample Python script.
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import warnings
+from support_function import *
+from drawing_graphs import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+warnings.filterwarnings('ignore')
+import random
+import re
 
+df = pd.read_csv('Close.csv')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+profit = calculation_profit(df)
 
+alpha = build_alpha(df)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+alpha = neutralization_with_normalization(alpha)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+verification_alpha(alpha)
+
+alpha_yield_vector = holding_pnl(alpha, profit)
+
+turnover_alpha = turnover(alpha)
+
+sharp_alpha = sharp(holding_pnl(alpha[-252:], profit))
+
+cumm_profit_value = cumm_profit(alpha_yield_vector)
+
+cumm_profit_graphs(cumm_profit_value)
+
+draw_down_value = draw_down(cumm_profit_value)
+print(draw_down_value)
