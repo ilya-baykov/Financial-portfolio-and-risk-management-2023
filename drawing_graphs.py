@@ -69,3 +69,17 @@ def alpha_stats_graphs(_alpha: pd.DataFrame(), _profit) -> None:
         return stats
 
     alpha_stats()
+
+
+def instrument_volatility(_profit: pd.DataFrame()) -> None:
+    _profit['volatility'] = _profit.std(axis=1)
+    _profit['volatility'].sort_values().reset_index(drop=True)
+
+    plt.figure(figsize=(25, 10))
+    plt.title('Profit')
+    plt.xlabel('Volatility')
+    plt.ylabel('Instrument')
+    plt.grid()
+    plt.plot(_profit['volatility'].sort_values().reset_index(drop=True))
+    plt.show()
+    print(_profit['volatility'])
