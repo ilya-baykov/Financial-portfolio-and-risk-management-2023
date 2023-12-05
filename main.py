@@ -26,4 +26,5 @@ cumm_profit_value = cumm_profit(alpha_yield_vector)
 
 draw_down_value = draw_down(cumm_profit_value)
 
-alpha_stats_graphs(alpha, profit)
+# alpha_stats_graphs(alpha, profit)
+

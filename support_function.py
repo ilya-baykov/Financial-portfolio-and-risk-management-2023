@@ -73,3 +73,16 @@ def draw_down(cumm_profit_data: pd.Series()):
             max_draw_down = max(max_draw_down, current_draw_down)
 
     return max_draw_down
+
+
+def truncate(alpha: pd.DataFrame(), threshold: float) -> np.ndarray:
+    _alpha = np.array(alpha)
+    # Используется булев массив для индексации массива _alpha.
+    # Это означает, что будут выбраны только те элементы _alpha,
+    # для которых соответствующий элемент в булевом массиве равен True.
+    # Таким образом, выбираются все элементы в _alpha, которые больше threshold.
+    _alpha[_alpha > threshold] = threshold
+    _alpha[_alpha < -threshold] = -threshold
+    _alpha[_alpha >= 0] /= (2 * np.sum(_alpha[_alpha >= 0]))
+    _alpha[_alpha < 0] /= (2 * np.sum(_alpha[_alpha < 0]))
+    return _alpha
