@@ -86,3 +86,18 @@ def truncate(alpha: pd.DataFrame(), threshold: float) -> np.ndarray:
     _alpha[_alpha >= 0] /= (2 * np.sum(_alpha[_alpha >= 0]))
     _alpha[_alpha < 0] /= (2 * np.sum(_alpha[_alpha < 0]))
     return _alpha
+
+
+def rank(lst: list):
+    lst_pos = list(enumerate(lst))
+    lst_pos.sort(key=lambda x: x[1])
+
+    for i in range(len(lst_pos)):
+        lst_pos[i] = list(lst_pos[i])
+
+    for i in range(len(lst_pos)):
+        lst_pos[i].append((i + 1) / len(lst_pos))
+
+    lst_pos.sort(key=lambda x: x[0])
+
+    return [i[2] for i in lst_pos]
